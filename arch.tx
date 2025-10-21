@@ -1,6 +1,5 @@
 Model:
-    'architecture' ':'
-    elements *= Element
+    'architecture' ':' elements*=Element
 ;
 
 Element:
@@ -8,15 +7,15 @@ Element:
 ;
 
 Component:
-    'component' type = ComponentType name = ID
+    'component' type=ComponentType name=ID
 ;
 
 Connector:
-    'connector' type = ConnectorType from = [Component] '->' to = [Component]
+    'connector' type=ConnectorType from=[Component] '->' to=[Component]
 ;
 
 ComponentType:
-    'frontend' | 'backend' | 'database'
+    'frontend' | 'backend' | 'database' | 'nosql'
 ;
 
 ConnectorType:

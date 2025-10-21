@@ -4,3 +4,5 @@ architecture:
     component database lssa_db
     connector http lssa_fe -> lssa_be
     connector db_connector lssa_be -> lssa_db
+    component nosql lssa_db_nosql
+    connector db_connector lssa_be -> lssa_db_nosql

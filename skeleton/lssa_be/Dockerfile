@@ -2,5 +2,5 @@
 FROM python:3.11-slim
 WORKDIR /app
 COPY . .
-RUN pip install flask mysql-connector-python
+RUN pip install flask mysql-connector-python boto3
 CMD ["python", "app.py"]

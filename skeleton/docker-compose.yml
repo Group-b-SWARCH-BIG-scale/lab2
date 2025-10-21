@@ -1,3 +1,4 @@
+version: '3.9'
 services:
   lssa_db:
     image: mysql:8
@@ -8,16 +9,24 @@ services:
       - ./lssa_db/init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
       - '3306:3306'
+  lssa_db_nosql:
+    image: amazon/dynamodb-local:latest
+    command: '-jar DynamoDBLocal.jar -sharedDb'
+    ports:
+      - '8000:8000'
+    volumes:
+      - ./lssa_db_nosql:/data
   lssa_fe:
     build: ./lssa_fe
     ports:
-      - '8001:80'
+      - '8002:80'
   lssa_be:
     build: ./lssa_be
     ports:
-      - '8002:80'
+      - '8003:80'
     depends_on:
       - lssa_db
+      - lssa_db_nosql
 
 networks:
   default:
